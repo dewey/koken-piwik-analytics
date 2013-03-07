@@ -1,0 +1,27 @@
+{ 
+	"name": "Piwik Analytics",
+	"version": "0.1",
+	"description": "Automatically add Piwik tracking code to any theme.",
+	"author": {
+		"name": "dewey",
+		"link": "https://github.com/dewey"
+	},
+
+	"data": {
+		"tracking_url": {
+			"label": "Piwik URL",
+			"info": "You can find your tracking url by logging into Piwik, clicking Settings, then selecting the Websites tab and Get Tracking code.",
+			"type": "string"
+		},
+		"site_id": {
+			"label": "Site ID",
+			"info": "You can find your Site ID by searching for ?idsite= in your tracking code.",
+			"type": "string",
+			"validation": {
+				"type": "regex",
+				"rule":	"[0-9]*",
+				"error_message": "Not a valid Site ID. Only Integers allowed."
+			}
+		}
+	}
+}
