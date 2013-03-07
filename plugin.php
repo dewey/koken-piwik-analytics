@@ -5,7 +5,7 @@ class KokenPiwikAnalytics extends KokenPlugin {
 	function __construct()
 	{
 		$this->require_setup = true;
-		$this->register_hook('before_closing_head', 'render');
+		$this->register_hook('before_closing_body', 'render');
 	}
 
 	function render()
