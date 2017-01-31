@@ -12,18 +12,23 @@ class KokenPiwikAnalytics extends KokenPlugin {
 	{
 
 		echo <<<OUT
-<!-- Piwik --> 
+<!-- Piwik -->
 <script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "{$this->data->tracking_url_ssl}" : "{$this->data->tracking_url}");
-document.write(unescape("%3Cscript src='" + pkBaseURL + "/piwik.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script type="text/javascript">
-try {
-var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", {$this->data->site_id});
-piwikTracker.trackPageView();
-piwikTracker.enableLinkTracking();
-} catch( err ) {}
-</script><noscript><p><img src="{$this->data->tracking_url}/piwik.php?idsite={$this->data->site_id}" style="border:0" alt="" /></p></noscript>
-<!-- End Piwik Tracking Code -->
+  var _paq = _paq || [];
+  // tracker methods like "setCustomDimension" should be called before "trackPageView"
+  _paq.push(['trackPageView']);
+  _paq.push(['enableHeartBeatTimer']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//{$this->data->tracking_url}/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '{$this->data->site_id}']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//{$this->data->tracking_url}/piwik.php?idsite={$this->data->site_id}&rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
 OUT;
 
 	}
